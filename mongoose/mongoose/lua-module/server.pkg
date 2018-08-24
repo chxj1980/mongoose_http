@@ -1,0 +1,33 @@
+$#include "../server.h"
+
+
+
+enum METHOD
+{
+	GET,
+	PUT,
+	POST,
+	ALL
+};
+
+class server
+{
+public:
+	server();
+	~server();
+	
+	static server* getInstance();
+	static void destroy();
+
+	bool start(const std::string& port);
+	void stop();
+
+	bool register_call(METHOD method, const std::string& uri, LuaFunction call);
+
+	void unregister_call(METHOD method, const std::string& uri);
+
+	void send_response(mg_connection *connection, const std::string& response);
+
+	METHOD get_method(http_message *http_req);
+};
+

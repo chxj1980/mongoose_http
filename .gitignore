@@ -3,3 +3,8 @@ mongoose/mongoose/local.log
 mongoose/mongoose/code/
 mongoose/mongoose/record/
 mongoose/mongoose/user/
+
+mongoose/mongoose.VC.db
+mongoose/.vs/
+mongoose/Debug/
+mongoose/mongoose/Debug/

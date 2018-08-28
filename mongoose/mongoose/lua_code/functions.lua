@@ -5,28 +5,7 @@ local Functions = {}
 local record_dir_name = "record"
 
 function Functions:init()
-    local rootpath = lfs.currentdir()
-
-    local find = false
-
-    for entry in lfs.dir(rootpath) do  
-        if entry ~= '.' and entry ~= '..' then  
-            local path = rootpath .. '\\' .. entry  
-            local attr = lfs.attributes(path) 
-  
-            if attr.mode == 'directory' and entry == record_dir_name then
-                find = true
-                break
-            end  
-        end  
-    end
-
-    if not find then
-        local path = rootpath .. '\\' .. record_dir_name
-        if not lfs.mkdir(path) then
-            print("create", record_dir_name, "fail")
-        end
-    end
+    self:createDir(record_dir_name)
 end
 
 function Functions:formatTableToString(...)
@@ -38,7 +17,9 @@ function Functions:formatTableToString(...)
                 s = s.."\""..data.."\""
             elseif type(data) == "table" then
                 s = s.." {\n"--table
+                local hasfied = false
                 for k,v in pairs(data) do
+                    hasfied = true
                     if type(v) ~= "nil" then
                         if Count > 0 then
                             for i =1,Count do
@@ -54,8 +35,10 @@ function Functions:formatTableToString(...)
                         s = s..",\n"
                     end
                 end
-                s = string.sub(s,1,-3)
-                s = s.."\n"
+                if hasfied then
+                    s = string.sub(s,1,-3)
+                    s = s.."\n"
+                end
                 if Count-1 > 0 then
                     for i =1,Count-1 do
                         s = s.."\t"
@@ -83,8 +66,42 @@ function Functions:formatTableToString(...)
     return s
 end
 
+function Functions:dirIsExist(dirname, rootpath)
+    if rootpath == nil then
+        rootpath = lfs.currentdir()
+    end
+    for entry in lfs.dir(rootpath) do  
+        if entry ~= '.' and entry ~= '..' then  
+            local path = rootpath .. '\\' .. entry  
+            local attr = lfs.attributes(path) 
+
+            if attr.mode == 'directory' and entry == dirname then
+                return true
+            end  
+        end  
+    end
+    return false
+end
+
+function Functions:createDir(dirname, rootpath)
+    if rootpath == nil then
+        rootpath = lfs.currentdir()
+    end
+    if not self:dirIsExist(dirname, rootpath) then
+        local path = rootpath .. '\\' .. dirname
+        if not lfs.mkdir(path) then
+            print("create", path, "fail")
+            return false
+        end
+    end
+    return true
+end
+
 function Functions:readFile(fileName)
-    local f = assert(io.open(fileName,'r'))
+    local f = io.open(fileName,'r')
+    if f == nil then
+        return ""
+    end
     local content = f:read('*all')
     f:close()
     return content
@@ -92,6 +109,12 @@ end
 
 function Functions:writeFile(fileName,content)
     local f = assert(io.open(fileName,'w'))
+    f:write(content)
+    f:close()
+end
+
+function Functions:appendStringToFile(fileName,content)
+    local f = assert(io.open(fileName,'ab+'))
     f:write(content)
     f:close()
 end

@@ -2,6 +2,7 @@
 _MyG = {}
 
 local function main()
+	require("lua_code.init")
 	svrInstance = server:getInstance()
 	if svrInstance == nil then
 		print("svrInstance = nil")

@@ -2,6 +2,7 @@
 
 #include "mongoose.h"
 #include <string>
+#include "md5.h"
 
 class http_msg
 {
@@ -31,3 +32,7 @@ public:
 void print_http_message(http_message* msg);
 
 std::string get_http_var(const std::string& buff, const std::string& name);
+
+std::string create_activ_code(int curIndex);
+
+uint32 getBufHash(const void *buf, uint32 len);

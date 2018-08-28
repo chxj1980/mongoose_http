@@ -1,4 +1,5 @@
 #include "tools.h"
+#include <inttypes.h>
 
 http_msg::http_msg()
 {}
@@ -140,3 +141,61 @@ std::string get_http_var(const std::string& buff, const std::string& name)
 	
 	return g_s_tmp_buff;
 }
+
+// hash
+uint32 getBufHash(const void *buf, uint32 len)
+{
+	uint32 seed = 131; // 31 131 1313 13131 131313 etc..
+	uint32 hash = 0;
+	uint32 i = 0;
+	char *str = (char *)buf;
+	while (i < len)
+	{
+		hash = hash * seed + (*str++);
+		++i;
+	}
+
+	return (hash & 0x7FFFFFFF);
+}
+
+std::string create_activ_code(int curIndex)
+{
+	const static int bufLen = 128;
+	static char szBuf[bufLen];
+	
+	// 时间戳
+	time_t curTime = time(NULL);
+	memset(szBuf, 0, sizeof(szBuf));
+	sprintf(szBuf, "%lld", curTime);
+
+	std::string key = szBuf;
+	key.append("-");
+
+	// 下标
+	uint32 hash = getBufHash(&curIndex, sizeof(curIndex));
+	memset(szBuf, 0, sizeof(szBuf));
+	sprintf(szBuf, "%u", hash);
+
+	key.append(szBuf);
+	key.append("-");
+
+	// 随机尾部
+	memset(szBuf, 0, sizeof(szBuf));
+	for (int i = 0; i < bufLen / 2; ++i)
+	{
+		szBuf[i] = (std::rand() % 255);
+	}
+	
+	MD5 M;
+	M.update(szBuf);
+	std::string md5str = M.toString();
+
+	hash = getBufHash(md5str.c_str(), md5str.size());
+	memset(szBuf, 0, sizeof(szBuf));
+	sprintf(szBuf, "%u", hash);
+
+	key.append(szBuf);
+
+	return key;
+}
+//http://127.0.0.1:8080/getActivationCode?username=fangcheng&password=wodemingzi

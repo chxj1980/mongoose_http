@@ -75,6 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>tolua++/include;tolua++/lib;lua/src/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -82,6 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>tolua++/include;tolua++/lib;lua/src/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -171,6 +173,7 @@
     <ClInclude Include="lua\src\lundump.h" />
     <ClInclude Include="lua\src\lvm.h" />
     <ClInclude Include="lua\src\lzio.h" />
+    <ClInclude Include="md5.h" />
     <ClInclude Include="mongoose.h" />
     <ClInclude Include="tools.h" />
     <ClInclude Include="server.h" />
@@ -213,6 +216,7 @@
     <ClCompile Include="lua\src\lzio.c" />
     <ClCompile Include="lua\src\print.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="md5.cpp" />
     <ClCompile Include="mongoose.c" />
     <ClCompile Include="tools.cpp" />
     <ClCompile Include="server.cpp" />

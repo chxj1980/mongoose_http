@@ -33,6 +33,8 @@ void server_log(const std::string& logstr)
 
 int main(int argc, char *argv[])
 {
+	srand(time(NULL));
+
 	server_log("start server...");
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
@@ -45,6 +47,8 @@ int main(int argc, char *argv[])
 
 	server_log("close server...");
 	lua_close(L);
+
+	system("pause");
 
 
 	//server* pserver = new server();

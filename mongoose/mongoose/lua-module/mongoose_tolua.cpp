@@ -1,6 +1,6 @@
 /*
 ** Lua binding: run
-** Generated automatically by tolua++-1.0.92 on Thu Aug 23 15:50:29 2018.
+** Generated automatically by tolua++-1.0.92 on Mon Aug 27 18:33:05 2018.
 */
 
 #ifndef __cplusplus
@@ -513,6 +513,35 @@ static int tolua_run_get_http_var00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* function: create_activ_code */
+#ifndef TOLUA_DISABLE_tolua_run_create_activ_code00
+static int tolua_run_create_activ_code00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isnumber(tolua_S,1,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  int curIndex = ((int)  tolua_tonumber(tolua_S,1,0));
+  {
+   std::string tolua_ret = (std::string)  create_activ_code(curIndex);
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create_activ_code'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  server */
 #ifndef TOLUA_DISABLE_tolua_run_server_new00
 static int tolua_run_server_new00(lua_State* tolua_S)
@@ -900,6 +929,7 @@ TOLUA_API int tolua_run_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_function(tolua_S,"print_http_message",tolua_run_print_http_message00);
   tolua_function(tolua_S,"get_http_var",tolua_run_get_http_var00);
+  tolua_function(tolua_S,"create_activ_code",tolua_run_create_activ_code00);
   tolua_constant(tolua_S,"GET",GET);
   tolua_constant(tolua_S,"PUT",PUT);
   tolua_constant(tolua_S,"POST",POST);

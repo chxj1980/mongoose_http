@@ -132,6 +132,9 @@
     <ClInclude Include="lua-module\lfs\lfs.h">
       <Filter>lua-module\lfs</Filter>
     </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mongoose.c">
@@ -262,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="lua-module\lfs\lfs.c">
       <Filter>lua-module\lfs</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

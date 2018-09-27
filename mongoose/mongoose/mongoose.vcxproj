@@ -148,7 +148,7 @@
   <ItemGroup>
     <ClInclude Include="lua-module\lfs\lfs.h" />
     <ClInclude Include="lua-module\mongoose_tolua.h" />
-    <ClInclude Include="LuaFunction.hpp" />
+    <ClInclude Include="LuaFunction.h" />
     <ClInclude Include="lua\src\lapi.h" />
     <ClInclude Include="lua\src\lauxlib.h" />
     <ClInclude Include="lua\src\lcode.h" />

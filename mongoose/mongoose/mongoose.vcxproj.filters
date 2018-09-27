@@ -117,9 +117,6 @@
     <ClInclude Include="tolua++\include\tolua++.h">
       <Filter>tolua\include</Filter>
     </ClInclude>
-    <ClInclude Include="LuaFunction.hpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="lua-module\mongoose_tolua.h">
       <Filter>lua-module</Filter>
     </ClInclude>
@@ -133,6 +130,9 @@
       <Filter>lua-module\lfs</Filter>
     </ClInclude>
     <ClInclude Include="md5.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFunction.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -251,9 +251,6 @@
     <ClCompile Include="tolua++\lib\tolua_event.c">
       <Filter>tolua\lib</Filter>
     </ClCompile>
-    <ClCompile Include="LuaFunction.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="lua-module\mongoose_tolua.cpp">
       <Filter>lua-module</Filter>
     </ClCompile>
@@ -267,6 +264,9 @@
       <Filter>lua-module\lfs</Filter>
     </ClCompile>
     <ClCompile Include="md5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaFunction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

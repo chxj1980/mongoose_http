@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include <functional>
-#include "LuaFunction.hpp"
+#include "LuaFunction.h"
 
 enum METHOD
 {
